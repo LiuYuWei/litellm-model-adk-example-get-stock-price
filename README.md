@@ -1,15 +1,14 @@
-# Weather and Time Agent
+# Stock Price Agent (Taiwan Stocks)
 
-This project implements an AI agent using the `google-adk` framework. The agent can provide current weather and time information for cities worldwide.
+This project implements an AI agent using the `google-adk` framework. The agent can provide real-time stock prices for Taiwan stocks using Yahoo Finance.
 
 ## Description
 
-The core of this project is the `weather_time_agent`, which is equipped with two main tools:
+The core of this project is the `stock_agent`, which is equipped with a tool to fetch stock prices:
 
-1.  **`get_current_time(city)`**: Retrieves the current time for a given city or an IANA timezone (e.g., `America/New_York`). It can resolve ambiguous city names by suggesting a list of possible timezones.
-2.  **`get_weather(city)`**: Provides the current weather for a specified city. (Note: This is currently a sample implementation with fixed data.)
+1.  **`get_stock_price(stock_code)`**: Retrieves the current stock price for a given Taiwan stock code (e.g., `2330`). It uses the `yfinance` library to fetch data from Yahoo Finance.
 
-This agent is built using `litellm` to connect to a language model and interprets user requests to call the appropriate tools.
+This agent is built using `litellm` to connect to a language model and interprets user requests to call the `get_stock_price` tool.
 
 ## Installation
 
@@ -42,17 +41,17 @@ This will launch the ADK web interface, where you can interact with the agent.
 
 ## Agent Details
 
--   **Name**: `weather_time_agent`
--   **Description**: An agent designed to answer questions about the time and weather in a city.
--   **Instructions**: The agent is instructed to be a helpful assistant that can handle queries about global time and weather. It attempts to resolve city names to IANA timezones and will ask for clarification if a city name is ambiguous.
+-   **Name**: `stock_agent`
+-   **Description**: An agent designed to answer questions about the stock price.
+-   **Instructions**: The agent is instructed to be a helpful assistant that can check stock prices. It identifies the 4-digit stock code from user input and calls the `get_stock_price` tool.
 
 ### Tools
 
--   `get_current_time(city: str) -> dict`
--   `get_weather(city: str) -> dict`
+-   `get_stock_price(stock_code: str) -> str`
 
 ## Dependencies
 
 -   `google-adk`
 -   `python-dotenv`
 -   `litellm`
+-   `yfinance`
